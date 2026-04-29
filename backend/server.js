@@ -4,7 +4,7 @@ dotenv.config()
 import express from "express"
 import cors from "cors"
 import pkg from "pg"
-import Redis from "ioredis"
+//import Redis from "ioredis"
 import rateLimit from "express-rate-limit"
 const { Pool } = pkg
 const openai = new OpenAI({
@@ -25,10 +25,10 @@ const pool = new Pool({
 
 /* ---------------- REDIS ---------------- */
 
-const redis = new Redis({
-  host: "127.0.0.1",
-  port: 6379
-})
+//const redis = new Redis({
+  //host: "127.0.0.1",
+  //port: 6379
+//})
 
 /* ---------------- RATE LIMIT ---------------- */
 
