@@ -17,10 +17,10 @@ app.use(express.json())
 /* ---------------- DATABASE ---------------- */
 
 const pool = new Pool({
-  user: "pranaydeb99",
-  host: "localhost",
-  database: "tinyurl",
-  port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
 /* ---------------- REDIS ---------------- */
