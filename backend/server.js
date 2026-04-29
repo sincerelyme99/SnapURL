@@ -97,7 +97,7 @@ app.post("/shorten", async (req, res) => {
       : null
 
     const result = await pool.query(
-      `INSERT INTO links (url, short_code, expires_at)
+      `INSERT INTO links (original_url, short_code, expires_at)
        VALUES ($1,$2,$3)
        RETURNING *`,
       [url, shortcode, expiresAt]
