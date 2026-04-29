@@ -20,6 +20,7 @@ function HomeContent() {
   const [analyticsData, setAnalyticsData] = useState({})
   const searchParams = useSearchParams()
   const [filter, setFilter] = useState("all")
+  const API_BASE = "https://snapurl-backend-6sc4.onrender.com"
 
   const filteredLinks = links.filter(link => {
     const isExpired =
@@ -42,7 +43,7 @@ function HomeContent() {
 
   const handleDelete = async (shortCode) => {
     try {
-      await fetch(`http://localhost:5001/${shortCode}`, {
+      await fetch(`https://snapurl-backend-6sc4.onrender.com/${shortCode}`, {
         method: "DELETE",
       })
 
@@ -89,7 +90,7 @@ function HomeContent() {
 
   async function fetchLinks() {
     try {
-      const res = await fetch("http://localhost:5001/links")
+      const res = await fetch("https://snapurl-backend-6sc4.onrender.com/links")
 
       console.log("STATUS:", res.status)
       console.log("CONTENT-TYPE:", res.headers.get("content-type"))
@@ -137,7 +138,7 @@ function HomeContent() {
 
   async function fetchAnalytics(code) {
     try {
-      const res = await fetch(`http://localhost:5001/analytics/${code}`)
+      const res = await fetch(`https://snapurl-backend-6sc4.onrender.com/analytics/${code}`)
       const data = await res.json()
       return data
     } catch (err) {
@@ -157,7 +158,7 @@ function HomeContent() {
     setLoading(true)
 
     try{
-      const res = await fetch("http://localhost:5001/shorten",{
+      const res = await fetch("https://snapurl-backend-6sc4.onrender.com/shorten",{
         method:"POST",
         headers:{ "Content-Type":"application/json" },
         body:JSON.stringify({
@@ -255,7 +256,7 @@ useLayoutEffect(() => {
     if(!confirm("Delete this link?")) return
 
     try{
-      const res = await fetch(`http://localhost:5001/links/${code}`,{
+      const res = await fetch(`https://snapurl-backend-6sc4.onrender.com/links/${code}`,{
         method:"DELETE"
       })
 
@@ -402,7 +403,7 @@ useLayoutEffect(() => {
           </div>
 
           {Array.isArray(links) && filteredLinks.map((link, index) => {
-            const short = `http://localhost:5001/${link.short_code || link.shortcode}`
+            const short = `https://snapurl-backend-6sc4.onrender.com/${link.short_code || link.shortcode}`
 
             const isExpired =
               link.expires_at &&
