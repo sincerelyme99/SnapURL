@@ -22,6 +22,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 })
+const shortUrl = `${process.env.BASE_URL}/${row.short_code}`
 
 /* ---------------- REDIS ---------------- */
 
@@ -107,7 +108,8 @@ app.post("/shorten", async (req, res) => {
 
     res.json({
       id: row.id,
-      url: row.url,
+       short_url: shortUrl,
+      url: row.original_url,
       shortcode: row.short_code,
       clicks: row.clicks,
       expires_at: row.expires_at
@@ -203,7 +205,7 @@ return res.status(404).json({ error: "Link not found" })    }
       [code]
     )
 
-    res.redirect(link.url)
+    res.redirect(link.original_url)
 
   } catch (err) {
     console.error(err)
