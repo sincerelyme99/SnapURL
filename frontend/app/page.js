@@ -1,10 +1,11 @@
 "use client"
+import { Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import AnalyticsChart from "../components/AnalyticsChart"
 import { useState, useEffect, useRef, useLayoutEffect } from "react"
 import { QRCodeCanvas } from "qrcode.react"
 import { useRouter } from "next/navigation"
-export default function Home() {
+function HomeContent() {
    const router = useRouter()
   const [url, setUrl] = useState("")
   const [shortcode, setShortcode] = useState("")
@@ -438,4 +439,11 @@ useLayoutEffect(() => {
       {toast && <div className="toast">{toast}</div>}
     </div>
   )
+  export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
+  )
+}
 }
