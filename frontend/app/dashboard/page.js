@@ -9,7 +9,7 @@ export default function Dashboard() {
   useEffect(() => {
     const loadLinks = async () => {
       try {
-        const res = await fetch("http://localhost:5001/links")
+        const res = await fetch("https://snapurl-backend-6sc4.onrender.com/links")
         const data = await res.json()
 
         if (Array.isArray(data)) {
@@ -54,7 +54,7 @@ export default function Dashboard() {
         {/* ROWS */}
         {filteredLinks.map((link, index) => {
           const code = link.short_code || link.shortcode || index
-          const short = `http://localhost:5001/${code}`
+          const short = `https://snapurl-backend-6sc4.onrender.com/${code}`
 
           const isExpired =
             link.expires_at &&

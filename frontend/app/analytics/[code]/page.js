@@ -12,7 +12,7 @@ const router = useRouter()
   useEffect(() => {
     async function fetchAnalytics() {
       try {
-        const res = await fetch(`http://localhost:5001/analytics/${code}`)
+        const res = await fetch(`https://snapurl-backend-6sc4.onrender.com/analytics/${code}`)
         const result = await res.json()
         setData(result)
       } catch (err) {

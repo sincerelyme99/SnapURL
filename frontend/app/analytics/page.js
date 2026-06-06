@@ -36,8 +36,9 @@ export default function Analytics(){
 useEffect(() => {
   async function loadLinks() {
     try {
-      const res = await fetch("http://localhost:5001/links")
-
+const res = await fetch(
+  "https://snapurl-backend-6sc4.onrender.com/links"
+)
       const text = await res.text()
       console.log("RAW (analytics):", text)
 

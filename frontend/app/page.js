@@ -184,7 +184,7 @@ function HomeContent() {
 }
       const finalUrl =
         data.short_url ||
-        `http://localhost:5001/${data.short_code || data.shortcode}`
+        `https://snapurl-backend-6sc4.onrender.com/${data.short_code || data.shortcode}`
 
       setShortUrl(finalUrl)
       setToast("Short link created 🚀")
