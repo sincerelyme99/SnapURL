@@ -27,13 +27,13 @@ export default function Dashboard() {
   }, [])
 
   const filteredLinks = links.filter((link) => {
-    const text = search.toLowerCase()
+  const text = search.toLowerCase()
 
-    return (
-      link.url?.toLowerCase().includes(text) ||
-      link.short_code?.toLowerCase().includes(text)
-    )
-  })
+  return (
+    link.original_url?.toLowerCase().includes(text) ||
+    link.shortcode?.toLowerCase().includes(text)
+  )
+})
 
   return (
     <div className="dashboardPage">
@@ -53,7 +53,7 @@ export default function Dashboard() {
 
         {/* ROWS */}
         {filteredLinks.map((link, index) => {
-          const code = link.short_code || link.shortcode || index
+          const code = link.shortcode || index
           const short = `https://snapurl-backend-6sc4.onrender.com/${code}`
 
           const isExpired =
@@ -75,7 +75,7 @@ export default function Dashboard() {
 
               {/* 3. ORIGINAL */}
               <span className="truncate">
-                {link.url}
+                {link.original_url}
               </span>
 
               {/* 4. CLICKS */}
