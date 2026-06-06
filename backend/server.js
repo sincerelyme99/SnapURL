@@ -22,7 +22,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 })
-const shortUrl = `${process.env.BASE_URL}/${row.short_code}`
+
 
 /* ---------------- REDIS ---------------- */
 
