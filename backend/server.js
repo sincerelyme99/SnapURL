@@ -106,14 +106,14 @@ app.post("/shorten", async (req, res) => {
 
     const row = result.rows[0]
 
-    res.json({
-      id: row.id,
-       short_url: shortUrl,
-      url: row.original_url,
-      shortcode: row.short_code,
-      clicks: row.clicks,
-      expires_at: row.expires_at
-    })
+ res.json({
+  id: row.id,
+  shortcode: row.short_code,
+  original_url: row.original_url,
+  clicks: row.clicks,
+  expires_at: row.expires_at,
+  short_url: `${process.env.BASE_URL}/${row.short_code}`
+})
 
   } catch (err) {
 
@@ -137,15 +137,15 @@ app.get("/links", async (req, res) => {
       "SELECT * FROM links ORDER BY id DESC"
     )
 
-    res.json(
-      result.rows.map(row => ({
-        id: row.id,
-        url: row.url,
-        shortcode: row.short_code,
-        clicks: row.clicks,
-        expires_at: row.expires_at
-      }))
-    )
+  res.json(
+  result.rows.map(row => ({
+    id: row.id,
+    shortcode: row.short_code,
+    original_url: row.original_url,
+    clicks: row.clicks,
+    expires_at: row.expires_at
+  }))
+)
 
   } catch (err) {
     console.error(err)
